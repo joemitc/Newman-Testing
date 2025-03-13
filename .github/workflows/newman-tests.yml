@@ -1,43 +1,30 @@
 name: Run Newman Tests
 
 on:
-
-push:
-
-branches:
-
-- main
-
-pull_request:
-
-branches:
-
-- main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-test:
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-runs-on: ubuntu-latest
+      - name: Install Newman
+        run: npm install -g newman
 
-steps:
+      - name: Debug File Check
+        run: ls -lah
 
-- name: Checkout Repository
-
-uses: actions/checkout@v3
-
-- name: Install Node.js
-
-uses: actions/setup-node@v3
-
-with:
-
-node-version: '18'
-
-- name: Install Newman
-
-run: npm install -g newman
-
-- name: Run Postman Collection
-
-run: newman run FullCollectionWeek2.postman_collection.json -r json --reporter-json-export results.json
+      - name: Run Postman Collection
+        run: newman run FullCollectionWeek2.postman_collection.json -r json --reporter-json-export results.json
