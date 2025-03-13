@@ -1,0 +1,360 @@
+{
+	"info": {
+		"_postman_id": "9cc81e8b-9ef0-4803-b019-abe6324722d8",
+		"name": "Day 5 collection Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37414474"
+	},
+	"item": [
+		{
+			"name": "Exercise 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is within 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains coord\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"coord\");\r",
+							"});\r",
+							"\r",
+							"//pm.test(\"Weather contains 'broken clouds'\", function () {\r",
+							"  //  pm.expect(pm.response.json().weather[0].description).to.equal(\"broken clouds\");\r",
+							"    //pm.expect(pm.response.json.weather[2].description).to.include(\"broken clouds\");\r",
+							"    //pm.expect(jsonData.weather[2].description).to.include(\"broken clouds\");\r",
+							"    //let description = pm.response.json().weather.description;\r",
+							"    //pm.expect(description).to.include(\"broken clouds\");\r",
+							"//});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}?lat={{lat}}&lon={{lon}}&units={{units}}&appid={{api_key}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "{{lat}}"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}"
+						},
+						{
+							"key": "units",
+							"value": "{{units}}"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exercise 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Weather is an array\", function () {\r",
+							"    pm.expect(jsonData.weather).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Main field is a string\", function () {\r",
+							"    pm.expect(jsonData.weather[0].main).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Temperature is a number\", function () {\r",
+							"    pm.expect(jsonData.main.temp).to.be.a(\"number\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}?lat={{lat}}&lon={{lon}}&units={{units}}&appid={{api_key}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "{{lat}}"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}"
+						},
+						{
+							"key": "units",
+							"value": "{{units}}"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exercise 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response contains name\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Temperature is within a reasonable range\", function () {\r",
+							"    let temp = pm.response.json().main.temp;\r",
+							"    pm.expect(temp).to.be.within(-50, 50);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Weather array has at least one item\", function () {\r",
+							"    pm.expect(pm.response.json().weather.length).to.be.at.least(1);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}?lat={{lat}}&lon={{lon}}&units={{units}}&appid={{api_key}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "{{lat}}"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}"
+						},
+						{
+							"key": "units",
+							"value": "{{units}}"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exercise 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"// Extract the weather array from the API response\r",
+							"let weatherArray = pm.response.json().list;\r",
+							"//Loop through the weather array and validate each object\r",
+							"weatherArray.forEach((item) => {\r",
+							"//    Validate that the object has the required properties\r",
+							"pm.test('Weather item with id ${item.weather[0].id} has required properties', function () {\r",
+							"        pm.expect(item.weather[0]).to.have.property(\"id\");\r",
+							"       pm.expect(item.weather[0]).to.have.property(\"main\");\r",
+							"       pm.expect(item.weather[0]).to.have.property(\"description\");\r",
+							"   });\r",
+							"//    Print a message in the console for each weather condition\r",
+							"   console.log(`Weather condition: ${item.weather[0].main} - ${item.weather[0].\r",
+							" description}`);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//1. Extract  the weather array from the API response (pm.response.json().weather).\r",
+							"//2. Loops through each item in the weather array using forEach().\r",
+							"//3. Perform a test on each item using pm.test() to ensure it has the required properties:\r",
+							"//4. \"id\" (numeric identifier of the weather condition)\r",
+							"//5. \"main\" (general category, e.g., Rain, Clouds)\r",
+							"//6. \"description\" (detailed description, e.g., light rain, scattered clouds)\r",
+							"//7. Print a message in the Postman console showing the main and description values.\r",
+							"\r",
+							"// Extract the weather array from the API response\r",
+							"//let weatherArray = pm.response.json().list;\r",
+							" \r",
+							"// Loop through the weather array and validate each object\r",
+							"//weatherArray.forEach((item) => {\r",
+							"    // Validate that the object has the required properties\r",
+							"//    pm.test(`Weather item with id ${item.weather[0].id} has required properties`, \r",
+							"//  function () {\r",
+							"//      pm.expect(item.weather[0]).to.have.property(\"id\");\r",
+							"//        pm.expect(item.weather[0]).to.have.property(\"main\");\r",
+							"//        pm.expect(item.weather[0]).to.have.property(\"description\");\r",
+							"//    });\r",
+							" \r",
+							"    // Print a message in the console for each weather condition\r",
+							"//    console.log(`Weather condition: ${item.weather[0].main} - ${item.weather[0].\r",
+							"//  description}`);\r",
+							"//});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Forecast_url}}?lat={{lat}}&lon={{lon}}&units={{units}}&appid={{api_key}}",
+					"host": [
+						"{{Forecast_url}}"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "{{lat}}"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}"
+						},
+						{
+							"key": "units",
+							"value": "{{units}}"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exercise 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let temp = pm.response.json().main.temp;\r",
+							"\r",
+							"if (temp < 10 ) {\r",
+							"    console.log(\"Cold Weather\");\r",
+							"}\r",
+							"else  if (temp > 20 ) {\r",
+							"    console.log(\"Warm Weather\");\r",
+							"}\r",
+							"else {\r",
+							"    console.log(\"Moderate Weather\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}?lat={{lat}}&lon={{lon}}&units={{units}}&appid={{api_key}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "{{lat}}"
+						},
+						{
+							"key": "lon",
+							"value": "{{lon}}"
+						},
+						{
+							"key": "units",
+							"value": "{{units}}"
+						},
+						{
+							"key": "appid",
+							"value": "{{api_key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
