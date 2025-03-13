@@ -27,4 +27,4 @@ jobs:
         run: ls -lah
 
       - name: Run Postman Collection
-        run: newman run FullCollectionWeek2.postman_collection.json -r json --reporter-json-export results.json
+        run: newman run FullCollectionWeek2.postman_collection.json -e C:\Users\JoelMitchell\Desktop\Day4APIEnv.postman_environment.json -r json --reporter-json-export results.json
